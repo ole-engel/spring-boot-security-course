@@ -1,5 +1,6 @@
 package com.example.demo.student;
 
+@SuppressWarnings("unused")
 public class Student {
 
     private final Integer studentId;
