@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @RestController
 @RequestMapping("api/v1/students")
 public class StudentController {
