@@ -40,10 +40,13 @@ public class ApplicationSecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login").permitAll()
+                        .usernameParameter("username")
+                        .passwordParameter("password")
                         .defaultSuccessUrl("/courses", true)
                 )
                 .rememberMe(remember -> remember
                         .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                        .rememberMeParameter("remember-me")
                         .key("something_very_secured")
                 )
                 .logout(logout -> logout
