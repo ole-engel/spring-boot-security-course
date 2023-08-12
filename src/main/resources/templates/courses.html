@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Courses</title>
@@ -10,6 +10,7 @@
 
 <form class="form-signin" method="get" action="/logout">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 </form>
 
 </body>
