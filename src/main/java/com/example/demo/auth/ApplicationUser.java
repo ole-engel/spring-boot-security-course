@@ -12,6 +12,7 @@ import java.util.Set;
 
 import static com.example.demo.security.ApplicationUserPermission.*;
 
+@SuppressWarnings("unused")
 @Entity
 public class ApplicationUser implements UserDetails {
     @Id
@@ -60,14 +61,21 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<SimpleGrantedAuthority> result = new HashSet<>();
-        result.add(new SimpleGrantedAuthority(COURSES_READ.getPermission()));
-        result.add(new SimpleGrantedAuthority(STUDENT_READ.getPermission()));
+        Set<SimpleGrantedAuthority> permissions = new HashSet<>();
+        permissions.add(new SimpleGrantedAuthority(COURSES_READ.getPermission()));
+        permissions.add(new SimpleGrantedAuthority(STUDENT_READ.getPermission()));
         if (isAdmin) {
-            result.add(new SimpleGrantedAuthority(COURSES_WRITE.getPermission()));
-            result.add(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()));
+            permissions.add(new SimpleGrantedAuthority(COURSES_WRITE.getPermission()));
+            permissions.add(new SimpleGrantedAuthority(STUDENT_WRITE.getPermission()));
+            if (isTrainee) {
+                permissions.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN_TRAINEE"));
+            } else {
+                permissions.add(new SimpleGrantedAuthority("ROLE_" + "ADMIN"));
+            }
+        } else {
+            permissions.add(new SimpleGrantedAuthority("ROLE_" + "STUDENT"));
         }
-        return result;
+        return permissions;
     }
 
     @Override

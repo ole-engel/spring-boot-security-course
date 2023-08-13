@@ -21,10 +21,6 @@ public class PostgresApplicationUserDaoService extends SimpleJpaRepository<Appli
 
     @Override
     public Optional<ApplicationUser> selectApplicationUserByUsername(String username) {
-//        if ("linda.admin".equals(username)) {
-//            FakeApplicationUserDaoService fake = new FakeApplicationUserDaoService(passwordEncoder);
-//            return fake.selectApplicationUserByUsername(username);
-//        }
         Optional<ApplicationUser> result = findById(username);
         if (result.isPresent()) {
             String encryptedPassword = passwordEncoder.encode(result.get().getPassword());
