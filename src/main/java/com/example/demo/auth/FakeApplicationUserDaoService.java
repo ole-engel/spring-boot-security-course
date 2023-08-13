@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.demo.security.ApplicationUserRole.*;
-
 @SuppressWarnings("unused")
 @Repository("fake")
 public class FakeApplicationUserDaoService implements ApplicationUserDao {
@@ -33,27 +31,27 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
                 new ApplicationUser(
                         "anna.smith",
                         passwordEncoder.encode("password"),
-                        STUDENT.getGrantedAuthorities(),
+                        //STUDENT.getGrantedAuthorities(),
                         true,
                         true,
                         true,
-                        true),
+                        true, false, false),
                 new ApplicationUser(
                         "linda.admin",
                         passwordEncoder.encode("password"),
-                        ADMIN.getGrantedAuthorities(),
+                        //ADMIN.getGrantedAuthorities(),
                         true,
                         true,
                         true,
-                        true),
+                        true, true, false),
                 new ApplicationUser(
                         "tom.admin",
                         passwordEncoder.encode("password"),
-                        ADMIN_TRAINEE.getGrantedAuthorities(),
+                        //ADMIN_TRAINEE.getGrantedAuthorities(),
                         true,
                         true,
                         true,
-                        true)
+                        true, false, true)
         );
     }
 }
