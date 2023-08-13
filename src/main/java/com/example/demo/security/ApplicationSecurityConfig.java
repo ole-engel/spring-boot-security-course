@@ -69,5 +69,4 @@ public class ApplicationSecurityConfig {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
-
 }
